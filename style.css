@@ -233,18 +233,22 @@ a{
 
 
 .search_box{
-    display: flex;
+    display: flex !important;
 
-    align-items: center;
+    align-items: center !important;
 
-    background: white;
+    border: 1px solid #cbd5e1 !important;
 
-    border: 1px solid #ddd;
+    border-radius: 30px !important;
 
-    border-radius: 15px;
+    padding: 4px 6px 4px 16px !important;
 
-    overflow: hidden;
+    background-color: #f8fafc !important;
+
+    flex: 0 1 500px !important;
 }
+
+
 
 .search_box input{
     width:500px;
@@ -258,26 +262,39 @@ a{
     padding: 0 20px;
 
     font-size: 16px;
+
+    border: none !important;
+
+    background: transparent !important;
+
+    outline: none !important;
+
+    width: 100% !important;
+
+    font-size: 14px !important;
+
+    color: #333 !important;
 }
 
+
 .tim_kiem{
-    border:none;
+   background-color: #008b8b !important;
 
-    border-left:1px solid #ddd;
+    color: white !important;
 
-    background:white;
+    border: none !important;
 
-    height:50px;
+    border-radius: 20px !important;
 
-    padding:0 20px;
+    padding: 8px 18px !important;
 
-    cursor:pointer;
+    cursor: pointer !important;
 
-    color:#008f8f;
+    font-size: 14px !important;
 
-    font-size:18px;
+    font-weight: 600 !important;
 
-    transition:0.3s;
+    white-space: nowrap !important;
 }
 
 .tim_kiem:hover{
@@ -563,7 +580,40 @@ a{
      margin: 5px;
 }
 
+.logo_text1{
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    color: #008b8b !important;
+    text-decoration: none !important;
+    white-space: nowrap;
+}
 
+.search_box{
+    position: relative; 
+}
 
+.goi-y-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    border: 1px solid #ddd;
+    list-style: none;
+    z-index: 1000;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.goi-y-list li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.goi-y-list li:hover {
+    background-color: #f0f0f0;
+}
 
 

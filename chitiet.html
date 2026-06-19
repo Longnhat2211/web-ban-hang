@@ -3,22 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chi tiết sản phẩm</title>
+    <title>Chi Tiết Sản Phẩm</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style_2.css">
 </head>
 <body>
-    
-    <header class="header">
-        <div class="logo"><h2>Long Nhat Mobile</h2></div>
-        <div class="tk_gh"><a href="index.html">🏠 Về trang chủ</a></div>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <a href="index.html" class="shop-logo">
+                    <span class="logo-text">Long Nhat Mobile</span>
+                </a>
+            </div>
+            <div class="search-area">
+                <input type="text" placeholder="Tìm kiếm sản phẩm" id="search-input">
+                <button id="btn-search">🔍 Tìm kiếm</button>
+            </div>
+            <nav class="header-nav">
+                <a href="#" class="nav-item">📍 Tìm siêu thị</a>
+                <a href="#" class="nav-item">👤 Tài khoản</a>
+                <a href="#" class="nav-item cart-btn">🛒 <span class="cart-count">0</span></a>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <div class="detail-container" id="khung-chi-tiet">
-            <p class="loading-text">Đang tải thông tin sản phẩm</p>
-        </div>
+    <main id="main-content-wrapper">
+        <div id="khung-chi-tiet"></div>
     </main>
 
     <script src="chitiet.js"></script>
+
 </body>
 </html>

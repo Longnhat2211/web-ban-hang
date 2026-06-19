@@ -26,14 +26,22 @@ mongoose.connect(url)
 
 // Định nghĩa cấu trúc cho một sản phẩm Điện thoại
 const ProductSchema = new mongoose.Schema({
-  name: { type: String, required: true },          // Tên ĐT: "HONOR X7d 4G 8Gb/256Gb"
-  sku: { type: String, required: true },           // Mã sản phẩm: "LGNLX2256OCEAN"
-  originalPrice: { type: Number, required: true },  // Giá gốc: 6690000
-  salePrice: { type: Number, required: true },      // Giá bán hiện tại: 6390000
-  memberPrice: { type: Number },                   // Giá Hoàng Hà Member: 6017000
-  eduPrice: { type: Number },                      // Giá Học sinh/Sinh viên: 5990000
-  mainImage: { type: String, required: true },     // Ảnh chính của sản phẩm
-  subImages: [{ type: String }],                   // Mảng các ảnh phụ (Xem tất cả hình ảnh)
+  name: { type: String, required: true },          
+  sku: { type: String, required: true },           
+  originalPrice: { type: Number, required: true },  
+  salePrice: { type: Number, required: true },      
+  memberPrice: { type: Number },                   
+  eduPrice: { type: Number },                      
+  mainImage: { type: String, required: true },     
+  subImages: [{ type: String }], 
+  screen: { type: String },
+  os: { type: String },
+  cpu: { type: String },
+  ram: { type: String },
+  rom: { type: String },
+  rearCamera: { type: String },
+  frontCamera: { type: String },
+  battery: { type: String },                  
   
   // Danh sách các phiên bản bộ nhớ (8GB/128GB, 8GB/256GB...)
   variants: [{
@@ -77,44 +85,10 @@ app.listen(PORT, () => {
 });
 
 
-
-// Hàm tự động thêm sản phẩm mẫu để test dữ liệu
-async function seedProduct() {
-  try {
-    // Kiểm tra xem database có sản phẩm nào chưa, nếu chưa có thì mới thêm
-    const count = await Product.countDocuments();
-    if (count === 0) {
-      await Product.create({
-        name: "HONOR X7d 4G 8Gb/256Gb",
-        sku: "LGNLX2256OCEAN",
-        originalPrice: 6690000,
-        phanTram: 12,
-        salePrice: 6390000,
-        mainImage: "https://vcdn-so hóa.vnecdn.net/2024/01/15/honor-x7d-1-1705315155.jpg", // Ví dụ link ảnh
-        subImages: ["ảnh_phụ_1.jpg", "ảnh_phụ_2.jpg"],
-        promotionText: "Trả góp 0% thẻ TD/CTTC chỉ từ 702,000 đ x 6 tháng",
-        variants: [
-          { storage: "8GB/128GB", price: 6090000 },
-          { storage: "5G 8GB/256GB", price: 7090000 },
-          { storage: "8GB/256GB", price: 6390000 }
-        ],
-        colors: [
-          { name: "Xanh", price: 6390000 },
-          { name: "Vàng", price: 6390000 },
-          { name: "Đen", price: 6390000 }
-        ]
-      });
-      console.log("💾 Đã thêm thành công sản phẩm HONOR mẫu vào MongoDB rồi m nhé!");
-    }
-  } catch (err) {
-    console.error("Lỗi tạo sản phẩm mẫu:", err);
-  }
-}
-
 // Gọi hàm này sau khi mongoose kết nối thành công
 mongoose.connect('mongodb://localhost:27017/web_ban_hang')
   .then(() => {
-    console.log('🎉 Kết nối MongoDB thành công m ơi!');
+    console.log('🎉 Kết nối MongoDB thành công');
     seedProduct(); // <-- Chạy hàm thêm sản phẩm mẫu ở đây
   });
 
@@ -134,3 +108,31 @@ mongoose.connect('mongodb://localhost:27017/web_ban_hang')
         res.status(500).json({ message: "Lỗi rồi" });
     }
 });
+
+// Thêm đoạn định nghĩa hàm này vào trước dòng 92
+async function seedProduct() {
+    try {
+        // Kiểm tra xem database đã có sản phẩm nào chưa
+        const count = await Product.countDocuments();
+        if (count === 0) {
+            await Product.create({
+                name: "iPhone 15 Pro Max 256GB",
+                sku: "IP15PM256",
+                originalPrice: 34990000,
+                salePrice: 29450000,
+                mainImage: "https://images.thinkgroup.vn/unsafe/800x800/https://media-api-beta.thinkpro.vn/media/core/products/2023/9/25/iphone-15-pro-max-titan-tu-nhien-thinkpro-1.png",
+                screen: "OLED, 6.7\", Super Retina XDR",
+                os: "iOS 17",
+                cpu: "Apple A17 Pro 6 nhân",
+                ram: "8 GB",
+                rom: "256 GB",
+                rearCamera: "Chính 48 MP & Phụ 12 MP, 12 MP",
+                frontCamera: "12 MP",
+                battery: "4422 mAh, Sạc nhanh 20W"
+            });
+            console.log("🌱 Đã chèn sản phẩm mẫu thành công m ơi!");
+        }
+    } catch (err) {
+        console.error("Lỗi khi seed data:", err);
+    }
+}

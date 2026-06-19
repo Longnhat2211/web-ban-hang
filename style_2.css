@@ -1,366 +1,584 @@
-main{
-    max-width: 1200px;
+/* ==========================================================================
+   1. RESET LAYOUT CHUẨN ĐÉT
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    margin: 20px auto;
+body {
+    padding-top: 100px; /* Chừa khoảng trống cố định cho Header không đè nội dung */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    line-height: 1.5;
+}
 
-    padding: 0 15px;
+.main-header, header {
+    background-color: #ffffff !important;
 
-    font-family: Arial, sans-serif;
+    border-bottom: 1px solid #e5e7eb !important;
+
+    position: fixed !important;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100% !important;
+
+    z-index: 9999 !important;
+
+    padding: 15px 0 !important;
+
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05) !important;
+}
+
+/* Khung gom nội dung Header ở giữa 1200px */
+.header-container, .main-header > div {
+    max-width: 1200px !important;
+
+    margin: 0 auto !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+
+    padding: 0 15px !important;
+
+    width: 100%;
+}
+
+/* Tên cửa hàng bên trái */
+.logo-text, .logo-area, h1.logo {
+    font-size: 22px !important;
+
+    font-weight: 800 !important;
+
+    color: #008b8b !important;
+
+    text-decoration: none !important;
+
+    white-space: nowrap;
+}
+
+/* Ô tìm kiếm ở giữa */
+.search-area, .search-box {
+    display: flex !important;
+
+    align-items: center !important;
+
+    border: 1px solid #cbd5e1 !important;
+
+    border-radius: 30px !important;
+
+    padding: 4px 6px 4px 16px !important;
+
+    background-color: #f8fafc !important;
+
+    flex: 0 1 500px !important;
+}
+
+.search-area input, #search-input {
+    border: none !important;
+
+    background: transparent !important;
+
+    outline: none !important;
+
+    width: 100% !important;
+
+    font-size: 14px !important;
+
+    color: #333 !important;
+}
+
+.search-area button, #btn-search {
+    background-color: #008b8b !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 20px !important;
+    padding: 8px 18px !important;
+    cursor: pointer !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+}
+
+/* Cụm điều hướng bên phải (Tìm siêu thị, Tài khoản, Giỏ hàng) */
+.header-nav, .right-menu {
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px !important;
+}
+
+.nav-item, .header-nav a {
+    text-decoration: none !important;
+    color: #475569 !important;
+    font-size: 13.5px !important;
+    font-weight: 500 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+}
+
+.nav-item:hover { color: #008b8b !important; }
+
+
+#main-content-wrapper {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 15px !important;
+    display: block !important;
 }
 
 .detail-title {
-    font-size: 24px;
-
-    font-weight: bold;
-
-    color: #111;
-
-    margin-bottom: 5px;
-
-    padding-bottom: 10px;
-
-    border-bottom: 1px solid #eee;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    margin: 25px 0 15px 0 !important;
+    display: block !important;
 }
 
-.detail-container {
-    display: flex;
-
-    gap: 30px;
-
-    background: white;
-
-    margin-top: 15px;
-
-    align-items: flex-start;
+/* Layout chia đôi 2 cột bằng Grid cực chuẩn */
+#khung-chi-tiet {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 30px !important;
+    width: 100% !important;
+    align-items: start !important;
 }
 
+/* ==========================================================================
+   4. CỘT TRÁI (KHỐI ẢNH)
+   ========================================================================== */
 .detail-left {
-    flex: 1.2; 
-
     background: #fff;
-
-    border: 1px solid #e5e5e5;
-
+    border: 1px solid #e2e8f0;
     border-radius: 12px;
-
     padding: 20px;
-
-    text-align: center;
-
-    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
-.detail-left img {
-    max-width: 100%;
+.mySwiper2 {
+    width: 100% !important;
+    height: 400px !important;
+}
 
-    height: 420px;
-
+.mySwiper2 .swiper-slide img {
+    width: 100%;
+    height: 100%;
     object-fit: contain;
 }
 
-.detail-right {
-    flex: 1;
-
-    background: #fff;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 20px;
+/* Thu nhỏ ảnh thumbnail bị vỡ link ảnh không làm tràn layout */
+.mySwiper {
+    margin-top: 15px !important;
+    padding-top: 15px;
+    border-top: 1px solid #f1f5f9;
 }
 
+.mySwiper .swiper-wrapper {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 10px !important;
+}
+
+.mySwiper .swiper-slide {
+    width: 65px !important;
+}
+
+.mySwiper .thumb-img-wrapper {
+    width: 55px !important;
+    height: 55px !important;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.mySwiper .thumb-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* ==========================================================================
+   5. CỘT PHẢI (FIX CHỮ SỐ LOẠN XẠ KHỐI PHIÊN BẢN/MÀU SẮC)
+   ========================================================================== */
+.detail-right-info {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+}
+
+/* Cụm giá tiền */
 .price-row {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: baseline;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: baseline !important;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 15px;
 }
 
 .detail-price .moi {
-    color: #e11b1b;
-
-    font-size: 28px;
-
-    font-weight: bold;
-
-    margin-right: 10px;
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    color: #e11d48 !important;
 }
 
 .detail-price .cu {
-    color: #777;
-
-    text-decoration: line-through;
-
-    font-size: 16px;
+    font-size: 15px !important;
+    color: #94a3b8 !important;
+    text-decoration: line-through !important;
+    margin-left: 10px;
 }
 
-.sku-text {
-    font-size: 13px;
-
-    color: #555;
-}
-
-.installment-text {
-    color: #009981;
-
-    font-weight: bold;
-
-    font-size: 14px;
-
-    margin-top: -10px;
-}
-
+/* Khóa chống tràn cho lưới tùy chọn */
 .option-title {
     font-size: 14px;
-
-    font-weight: bold;
-
-    color: #333;
-
-    margin-bottom: 8px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 10px;
 }
 
 .options-grid {
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 10px;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important; /* Chia đều làm 3 cột bằng nhau */
+    gap: 10px !important;
+    width: 100% !important;
 }
 
+/* SỬA CHÍ MẠNG: Ép chữ xuống hàng, không cho dính chùm đè chữ lên nhau */
 .option-item {
-    border: 1px solid #e5e5e5;
-
-    border-radius: 8px;
-
-    padding: 10px;
-
-    text-align: center;
-
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 8px !important;
+    padding: 10px 8px !important;
+    text-align: center !important;
+    background: #ffffff !important;
     cursor: pointer;
-
-    background: #fff;
-
-    transition: all 0.2s ease;
-}
-
-.option-item.active {
-    border-color: #009981;
-
-    background-color: #f6fcfb;
-
-    position: relative;
-}
-
-.option-item.active::after {
-    content: "✓";
-
-    position: absolute;
-
-    bottom: 0;
-
-    right: 0;
-
-    background: #009981;
-
-    color: white;
-
-    font-size: 10px;
-
-    padding: 2px 5px;
-
-    border-top-left-radius: 6px;
-
-    border-bottom-right-radius: 6px;
+    display: flex !important;
+    flex-direction: column !important; /* Xếp dọc các phần tử bên trong */
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 62px !important;
 }
 
 .option-item strong {
-    display: block;
-
-    font-size: 13px;
-
-    color: #111;
+    display: block !important; /* Bắt buộc chiếm riêng 1 hàng phía trên */
+    font-size: 13.5px !important;
+    color: #1e293b !important;
+    font-weight: 600 !important;
+    margin-bottom: 2px !important;
 }
 
 .option-item span {
-    display: block;
-
-    font-size: 12px;
-
-    color: #e11b1b;
-
-    margin-top: 4px;
+    display: block !important; /* Bắt buộc chiếm riêng 1 hàng phía dưới */
+    font-size: 11.5px !important;
+    color: #64748b !important;
+    white-space: nowrap !important; /* Không cho rớt dòng lung tung */
 }
 
+/* Trạng thái ô được click chọn (Active) */
+.option-item.active {
+    border-color: #009981 !important;
+    background-color: #f0fdfa !important;
+    box-shadow: 0 0 0 1px #009981 !important;
+}
+
+.option-item.active strong, 
+.option-item.active span {
+    color: #009981 !important;
+}
+
+/* Cụm hộp giá thành viên */
 .member-prices {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 15px;
+    display: flex !important;
+    gap: 12px !important;
 }
 
 .member-box {
-    background: #f4fbf9;
-
+    background: #f0fdfa;
     border: 1px dashed #009981;
-
     border-radius: 8px;
-
     padding: 12px;
+    flex: 1;
 }
 
 .member-box h4 {
-    font-size: 13px;
-
-    color: #333;
-
-    margin: 0 0 5px 0;
+    font-size: 12px;
+    color: #334155;
+    margin-bottom: 4px;
 }
 
 .member-box .price {
-    font-size: 18px;
-
-    font-weight: bold;
-
+    font-size: 17px;
+    font-weight: 700;
     color: #009981;
 }
 
-
-.detail-text {
-    background: #f6f6f6;
-
-    border-radius: 8px;
-
-    padding: 15px;
-
-    border: 1px solid #e5e5e5;
-}
-
-.detail-text h3 {
-    font-size: 15px;
-
-    color: #e11b1b;
-
-    margin-top: 0;
-
-    margin-bottom: 10px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 5px;
-}
-
-.detail-text p {
-    font-size: 14px;
-
-    color: #444;
-
-    line-height: 1.5;
-
-    margin: 0;
-}
-
-
+/* Nút mua ngay rực rỡ */
 .btn-add-cart {
-    width: 100%;
-
-    padding: 15px;
-
-    background: #ff3945; 
-
-    color: white;
-
-    border: none;
-
-    border-radius: 8px;
-
-    font-size: 16px;
-
-    font-weight: bold;
-
+    width: 100% !important;
+    padding: 15px !important;
+    background: linear-gradient(to bottom, #ff4d4d, #ff1a1a) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
     cursor: pointer;
+}
 
+.swiper-slide a {
+    display: block !important;
+    overflow: hidden !important;
+}
+.swiper-slide img {
+    display: block !important;
+    max-width: 100%;
+}
+
+/* ==========================================================================
+   6. FIX BẢNG THÔNG SỐ KỸ THUẬT CHUẨN ĐẸP
+   ========================================================================== */
+.product-specs-wrapper {
+    margin-top: 25px !important;
+    background: #fafafa !important;
+    border-radius: 10px !important;
+    padding: 20px !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+.specs-title {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #1e293b !important;
+    margin-bottom: 15px !important;
     text-transform: uppercase;
-
-    transition: background 0.2s ease;
+    letter-spacing: 0.5px;
 }
 
-.btn-add-cart:hover {
-    background: #e11b1b;
+.specs-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
 }
 
-.btn-add-cart span {
-    display: block;
-
-    font-size: 12px;
-
-    font-weight: normal;
-
-    text-transform: none;
-
-    margin-top: 2px;
+.specs-table tr {
+    border-bottom: 1px solid #e2e8f0 !important;
 }
 
-.loading-text {
-    font-size: 16px;
-
-    color: #666;
-
-    font-style: italic;
-
-    text-align: center;
-
-    width: 100%;
-
-    padding: 5px 0;
+/* Dòng xen kẽ màu xám nhạt cho dễ nhìn */
+.specs-table tr:nth-child(even) {
+    background-color: #f1f5f9 !important;
 }
 
-
-.thumbnail-container {
-    display: flex;
-
-    justify-content: center;
-
-    gap: 10px;
-
-    margin-top: 15px;
+/* Cột tiêu đề bên trái */
+.specs-table td:first-child {
+    width: 30% !important; /* Khóa cứng độ rộng cột trái, không sợ text dài làm xô lệch */
+    padding: 12px 10px !important;
+    font-weight: 600 !important;
+    color: #475569 !important;
+    vertical-align: top !important; /* Căn chữ lên đỉnh dòng */
+    background-color: rgba(0, 0, 0, 0.02);
 }
 
-
-.thumbnail-item {
-    width: 60px;
-
-    height: 60px;
-
-    border: 1px solid #e5e5e5;
-
-    border-radius: 8px;
-
-    padding: 5px;
-
-    cursor: pointer;
-
-    background: #fff;
-
-    transition: all 0.2s ease;
+/* Cột nội dung bên phải */
+.specs-table td:last-child {
+    width: 70% !important;
+    padding: 12px 12px !important;
+    color: #0f172a !important;
+    vertical-align: top !important;
 }
 
-
-.thumbnail-item.active {
-    border-color: #ff3945; 
-
-    box-shadow: 0 0 5px rgba(255, 57, 69, 0.2);
+.specs-table tr:last-child {
+    border-bottom: none !important;
 }
 
-.thumbnail-item img {
-    width: 100%;
-
-    height: 100%;
+.detail-left {
+    background: #fff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    padding: 20px !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
     
-    object-fit: contain;
+    display: flex !important;
+    flex-direction: column !important; /* Xếp dọc từ trên xuống */
+    gap: 20px !important; /* Tạo khoảng cách an toàn giữa các khối, đố thằng nào đè được lên nhau */
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* 1. Khối ảnh to */
+.mySwiper2 {
+    width: 100% !important;
+    height: 400px !important;
+    position: relative !important;
+    clear: both !important;
+}
+
+/* 2. Khối ảnh nhỏ (Thumbnail Slider) */
+.mySwiper {
+    width: 100% !important;
+    position: relative !important;
+    margin: 0 !important;
+    padding: 15px 0 !important;
+    border-top: 1px solid #f1f5f9 !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+    display: block !important; /* Triệt tiêu float nếu có */
+    clear: both !important;
+}
+
+/* Ép các ô thumbnail xếp ngang ngay ngắn */
+.mySwiper .swiper-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+    height: auto !important;
+}
+
+.mySwiper .swiper-slide {
+    width: 65px !important;
+    height: auto !important;
+    position: relative !important;
+}
+
+/* Khung bọc ảnh nhỏ */
+.mySwiper .thumb-img-wrapper {
+    width: 60px !important;
+    height: 60px !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 6px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    background: #fff !important;
+}
+
+/* Ẩn mẹ cái chữ text lỗi "img" hoặc "alt" nếu ảnh chết, không cho nó tràn ra ngoài */
+.mySwiper .thumb-img-wrapper img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    text-indent: -10000px !important; /* Đẩy chữ alt lỗi biến mất nếu link ảnh die */
+}
+
+.mySwiper .thumb-text {
+    font-size: 12px !important;
+    color: #475569 !important;
+    text-align: center !important;
+    margin-top: 4px !important;
+    display: block !important;
+}
+
+/* 3. Khối thông tin bảo hành (Đứng riêng biệt hoàn toàn) */
+.section-baohanh, .detail-text {
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 15px !important;
+    background-color: #fff !important;
+    border: 1px dashed #ff4d4d !important; /* Tạo khung viền đứt cho đẹp giống mẫu */
+    border-radius: 8px !important;
+    clear: both !important; /* Chống bị các phần tử float trước đó đè lên */
+}
+
+.section-baohanh h3 {
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: #d32f2f !important;
+    margin-bottom: 10px !important;
+}
+
+.section-baohanh p {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    color: #334155 !important;
+    margin: 0 !important;
+}
+
+/* Khối banner vòng quay */
+.product-ads-banner {
+    width: 100% !important;
+    margin-top: 15px !important;
+    display: block !important;
+}
+
+.product-ads-banner img {
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 6px !important;
+    object-fit: cover !important;
+}
+
+/* ==========================================================================
+   DIỆT TẬN GỐC LỖI ẢNH LỚN TRÀN CHỮ "IMG" XUỐNG KHỐI BẢO HÀNH
+   ========================================================================== */
+
+/* 1. Khóa chặt khung chứa Swiper ảnh to, tuyệt đối không cho nội dung lòi ra ngoài */
+.mySwiper2 {
+    width: 100% !important;
+    height: 450px !important; /* Khóa cứng chiều cao slider ảnh chính */
+    position: relative !important;
+    overflow: hidden !important; /* Bắt buộc ẩn mọi thứ tràn hàng */
+    margin-bottom: 15px !important;
+    display: block !important;
+}
+
+/* Khóa chặt từng slide ảnh to */
+.mySwiper2 .swiper-slide {
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: #fff !important;
+}
+
+/* 2. Xử lý triệt để thẻ a và img bên trong slider ảnh to */
+.mySwiper2 .swiper-slide a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+}
+
+.mySwiper2 .swiper-slide img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    /* CHIÊU ĐỘC: Nếu ảnh lỗi, giấu luôn chữ "img" thô thiển đi không cho tràn xuống */
+    text-indent: -10000px !important; 
+}
+
+/* 3. Cách ly hoàn toàn khối bảo hành bằng tường lửa Flexbox */
+.detail-left {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important; /* Tạo khoảng cách 20px giữa: Ảnh to -> Ảnh nhỏ -> Bảo hành */
+}
+
+.section-baohanh, .detail-text {
+    margin-top: 10px !important;
+    display: block !important;
+    clear: both !important;
+    position: relative !important;
+    z-index: 10 !important;
+    background-color: #ffffff !important;
 }

@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 const images = [
     "https://cdn.hoanghamobile.vn/i/home/Uploads/2026/05/30/xiaomi-17t-web_639157494619050970.png",
     "https://cdn.hoanghamobile.vn/i/home/Uploads/2026/05/28/iphone-17-web_639155782281586569.png",
@@ -137,3 +144,6 @@ function hienThiGiaoDien(danhSachSP) {
 document.addEventListener("DOMContentLoaded", () => {
   layDanhSachSanPham(); 
 });
+
+
+
