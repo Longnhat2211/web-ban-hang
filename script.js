@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 const images = [
     "https://cdn.hoanghamobile.vn/i/home/Uploads/2026/05/30/xiaomi-17t-web_639157494619050970.png",
     "https://cdn.hoanghamobile.vn/i/home/Uploads/2026/05/28/iphone-17-web_639155782281586569.png",
@@ -15,135 +9,118 @@ const images = [
 ];
 
 let current = 0;
-
 const slider = document.getElementById("slider");
 
-document.getElementById("next").onclick = function(){
+// --- 2. SLIDER LOGIC ---
+if(slider) {
+    document.getElementById("next").onclick = () => {
+        current = (current + 1) % images.length;
+        slider.src = images[current];
+    };
+    document.getElementById("prev").onclick = () => {
+        current = (current - 1 + images.length) % images.length;
+        slider.src = images[current];
+    };
+    setInterval(() => {
+        current = (current + 1) % images.length;
+        slider.src = images[current];
+    }, 4000);
+}
 
-    current++;
-
-    if(current >= images.length){
-        current = 0;
-    }
-
-    slider.src = images[current];
-};
-
-document.getElementById("prev").onclick = function(){
-
-    current--;
-
-    if(current < 0){
-        current = images.length - 1;
-    }
-
-    slider.src = images[current];
-};
-setInterval(() => {
-
-    current++;
-
-    if(current >= images.length){
-        current = 0;
-    }
-
-    slider.src = images[current];
-
-}, 4000);
-
-
+// --- 3. PRODUCT SLIDER LOGIC ---
 const productList = document.querySelector(".product-list");
+if(productList) {
+    let currentPosition = 0;
+    document.getElementById("next_2").onclick = () => {
+        currentPosition -= 260;
+        productList.style.transform = `translateX(${currentPosition}px)`;
+    };
+    document.getElementById("prev_2").onclick = () => {
+        currentPosition = Math.min(0, currentPosition + 260);
+        productList.style.transform = `translateX(${currentPosition}px)`;
+    };
+}
 
-let currentPosition = 0;
+// --- 4. TÌM KIẾM & API ---
+let tatCaSanPham = []; 
 
-document.getElementById("next_2").onclick = function(){
+function layDanhSachSanPham() {
+    fetch('http://localhost:5000/api/products') 
+        .then(response => response.json())
+        .then(data => {
+            tatCaSanPham = data;
+            hienThiGiaoDien(tatCaSanPham);
+        })
+        .catch(error => console.error('Lỗi lấy sản phẩm:', error));
+}
 
-    currentPosition -= 260;
-
-    productList.style.transform =
-        `translateX(${currentPosition}px)`;
-};
-
-document.getElementById("prev_2").onclick = function(){
-
-    currentPosition += 260;
-
-    if(currentPosition > 0){
-        currentPosition = 0;
+function hienThiGiaoDien(danhSachSP) {
+    const danhSachElement = document.getElementById('danh-sach-sp'); 
+    if (!danhSachElement) return; 
+    
+    danhSachElement.innerHTML = '';
+    if (danhSachSP.length === 0) {
+        danhSachElement.innerHTML = '<p style="text-align:center; width:100%;">Không tìm thấy sản phẩm!</p>';
+        return;
     }
 
-    productList.style.transform =
-        `translateX(${currentPosition}px)`;
-};
+    let html = '';
+    danhSachSP.forEach(sp => {
+        const danhSachMau = (sp.colors && Array.isArray(sp.colors)) ? sp.colors.map(c => c.name || c.colorName || JSON.stringify(c)).join(', ') : 'Chưa cập nhật';
+        let phanTramGiamGia = (sp.originalPrice && sp.salePrice && sp.originalPrice > sp.salePrice) ? Math.round(((sp.originalPrice - sp.salePrice) / sp.originalPrice) * 100) : 0;
+        const nhanGiamGia = phanTramGiamGia > 0 ? `<span class="giam_gia">-${phanTramGiamGia}%</span>` : '';
 
+        html += `
+            <div class="product-card">
+                <a href="chitiet.html?id=${sp._id}"><img src="${sp.mainImage}" alt="${sp.name}"></a>
+                <a href="chitiet.html?id=${sp._id}"><h3>${sp.name}</h3></a>
+                <p class="product-color"> Màu: ${danhSachMau} </p>
+                <p class="gia_moi">${sp.salePrice.toLocaleString('vi-VN')} đ</p>
+                <p class="gia_cu">${sp.originalPrice.toLocaleString('vi-VN')} đ</p>
+                ${nhanGiamGia}
+                <button>Mua ngay</button>
+            </div>
+        `;
+    });
+    danhSachElement.innerHTML = html;
+}
 
-// 1. Hàm gọi API bốc dữ liệu từ Backend cổng 5000 về (Giữ nguyên)
-function layDanhSachSanPham() {
-  fetch('http://localhost:5000/api/products') 
-    .then(response => response.json())
-    .then(data => {
-      hienThiGiaoDien(data);
-    })
-    .catch(error => {
-      console.error('Lỗi lấy sản phẩm rồi m ơi:', error);
+// --- 5. TÍNH NĂNG GỢI Ý TÌM KIẾM ---
+const inputTimKiem = document.getElementById("input-tim-kiem");
+const danhSachGoiY = document.getElementById("danh-sach-goi-y");
+
+if(inputTimKiem) {
+    inputTimKiem.addEventListener("input", function() {
+        const tuKhoa = this.value.toLowerCase().trim();
+        if (!danhSachGoiY) return;
+        danhSachGoiY.innerHTML = ''; 
+        if (tuKhoa === "") return;
+
+        const ketQua = tatCaSanPham.filter(sp => sp.name.toLowerCase().includes(tuKhoa));
+        ketQua.slice(0, 5).forEach(sp => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <img src="${sp.mainImage}" style="width:40px;height:40px;">
+                <div class="goi-y-info">
+                    <strong>${sp.name}</strong><br>
+                    <span>${sp.salePrice.toLocaleString('vi-VN')} đ</span>
+                </div>
+            `;
+            li.onclick = () => { window.location.href = `chitiet.html?id=${sp._id}`; };
+            danhSachGoiY.appendChild(li);
+        });
     });
 }
 
-// 2. Hàm tự động sản xuất HTML đồng bộ 100% với file CSS 
-function hienThiGiaoDien(danhSachSP) {
-  const danhSachElement = document.getElementById('danh-sach-sp'); 
-  
-  if (!danhSachElement) return;
-  danhSachElement.innerHTML = '';
-
-  danhSachSP.forEach(sp => {
-
-    const danhSachMau = sp.colors && Array.isArray(sp.colors)
-      ? sp.colors.map(c => c.name || c.colorName || JSON.stringify(c)).join(', ')
-      : 'Chưa cập nhật';
-
-    // 2. Tính toán phần trăm giảm giá tự động
-    let phanTramGiamGia = 0;
-    if (sp.originalPrice && sp.salePrice && sp.originalPrice > sp.salePrice) {
-      phanTramGiamGia = Math.round(((sp.originalPrice - sp.salePrice) / sp.originalPrice) * 100);
-    }
-
-   
-    const nhanGiamGia = phanTramGiamGia > 0 
-      ? `<span class="giam_gia">-${phanTramGiamGia}%</span>` 
-      : '';
-    
-    const linkAnhChuan = sp.mainImage
-
-    const sanPhamHtml = `
-      <div class="product-card">
-       <a href="chitiet.html?id=${sp._id}">
-        <img src="${linkAnhChuan}" alt="${sp.name}">
-       </a>
-
-       <a href="chitiet.html?id=${sp._id}">
-        <h3>${sp.name}</h3>
-       </a>
-    
-        <p class="product-color"> Màu: ${danhSachMau} </p>
-    
-        <p class="gia_moi">${sp.salePrice.toLocaleString('vi-VN')} đ</p>
-
-        <p class="gia_cu">${sp.originalPrice.toLocaleString('vi-VN')} đ</p>
-
-        ${nhanGiamGia}
-        <button>Mua ngay</button>
-      </div>
-    `;
-    
-    danhSachElement.innerHTML += sanPhamHtml; 
-  });
+// Xử lý nút tìm kiếm chính
+const btnTimKiem = document.querySelector(".tim_kiem");
+if(btnTimKiem) {
+    btnTimKiem.onclick = () => {
+        const tuKhoa = inputTimKiem.value.toLowerCase().trim();
+        const ketQua = tatCaSanPham.filter(sp => sp.name.toLowerCase().includes(tuKhoa));
+        hienThiGiaoDien(ketQua);
+        if(danhSachGoiY) danhSachGoiY.innerHTML = '';
+    };
 }
 
-// 3. Đợi HTML load xong hoàn toàn mới cho chạy kích hoạt
-document.addEventListener("DOMContentLoaded", () => {
-  layDanhSachSanPham(); 
-});
-
-
-
+document.addEventListener("DOMContentLoaded", layDanhSachSanPham);

@@ -9,21 +9,19 @@
 <body>
 <header class="header">
     <div class="logo">
-        <span class="logo_text1">Long Nhat Mobile</span>
+        <span class="logo_text1">CellHub</span>
     </div>
 
     <div class="search_box">
-        <input type="text" id="input-tim-kiem" placeholder="Tìm kiếm sản phẩm">
-        <button class="tim_kiem">
-            🔍Tìm kiếm
-        </button>
-        <ul id="danh-sach-goi-y" class="goi_y_list"></ul>
+        <input type="text" id="input-tim-kiem" placeholder="Tìm kiếm sản phẩm..." autocomplete="off">
+        <button class="tim_kiem">🔍 Tìm kiếm</button>
+        <ul id="danh-sach-goi-y"></ul>
     </div>
 
 
     <div class="tk_gh">
         <a href="#">📍Tìm siêu thị</a>
-        <a href="#">👤Tài khoản</a>
+        <a href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">👤Tài khoản</a>
         <a href="#" class="cart">🛒
             <span>0</span>
         </a>
@@ -98,7 +96,7 @@
 </section>
 </div>
 </main>
-<hr>
+
 <footer class="footer">
     <div class="footer-content">
         <div class="ttin_lhe">
@@ -122,5 +120,13 @@
 
 </footer>
 <script src="script.js"></script>
+<script>
+    // Kiểm tra xem đã có thông tin người dùng trong LocalStorage chưa
+    const user = localStorage.getItem('currentUser');
+    if (!user) {
+        // Nếu chưa có, đá người dùng về trang đăng nhập
+        window.location.href = 'login.html'; // Hoặc tên file login của bạn
+    }
+</script>
 </body>
 </html>

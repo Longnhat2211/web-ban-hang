@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập CellHub - Phong Cách Startup</title>
+    <link rel="stylesheet" href="style_3.css">
+</head>
+<body>
+
+    <div class="login-container">
+        
+        <div class="brand-section">
+            <div class="welcome-text">
+                <h2>Chào mừng đến với CellHub 👋</h2>
+            </div>
+
+            <div class="benefits-frame">
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <span class="feature-icon">📱</span>
+                        <span>Công nghệ chính hãng, chất lượng đảm bảo.</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">⚡</span>
+                        <span>Giá tốt mỗi ngày, ưu đãi liên tục.</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🚚</span>
+                        <span>Giao hàng nhanh trên toàn quốc.</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🛡️</span>
+                        <span>Bảo hành minh bạch, hỗ trợ tận tâm.</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">💳</span>
+                        <span>Thanh toán linh hoạt, trả góp dễ dàng.</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">❤️</span>
+                        <span>Hơn hàng nghìn khách hàng tin tưởng.</span>
+                    </div>
+                </div>
+            </div>
+
+            <img src="https://cdn.nhandan.vn/images/3232655a5819aa3797ffc5f45387c90b0532f9848e20fb87a6ce3bc144180ae3dba7628305e4b4df2e5a7d84bd3931e5d3efb3164a4e6e140d56df8405ff6f6f/fifa-world-cup-26-mascot-maple.jpg" alt="Linh vật CellHub" class="mascot">
+        </div>
+
+        <div class="form-section">
+            
+            <div id="login-container">
+                <div class="form-header">
+                    <h3>Đăng nhập hệ thống</h3>
+                    <p>Vui lòng nhập thông tin để truy cập.</p>
+                </div>
+                
+                <div class="input-wrapper">
+                    <label>Số điện thoại / Email</label>
+                    <input type="text" id="login-username" placeholder="Nhập tài khoản của bạn">
+                </div>
+                
+                <div class="input-wrapper">
+                    <label>Mật khẩu</label>
+                    <input type="password" id="login-password" placeholder="••••••••">
+                </div>
+
+                <div class="form-actions">
+                    <label class="remember-me">
+                        <input type="checkbox"> Ghi nhớ tôi
+                    </label>
+                    <a href="#" class="forgot-link">Quên mật khẩu?</a>
+                </div>
+
+                <button class="btn-primary" id="btn-login">Đăng nhập</button>
+                
+                <div class="divider">
+                    <span>Hoặc</span>
+                </div>
+
+                <div class="register-hint">
+                    Chưa có tài khoản? <a href="#" id="show-register">Đăng ký ngay</a>
+                </div>
+            </div>
+
+            <div id="register-container" class="hidden">
+                <div class="form-header">
+                    <h3>Tạo tài khoản mới</h3>
+                    <p>Đăng ký để nhận nhiều ưu đãi hấp dẫn.</p>
+                </div>
+                
+                <div class="input-wrapper">
+                    <label>Họ và tên</label>
+                    <input type="text" id="reg-fullname" placeholder="Nhập họ và tên của bạn">
+                </div>
+
+                <div class="input-wrapper">
+                    <label>Số điện thoại / Email</label>
+                    <input type="text" id="reg-username" placeholder="Nhập số điện thoại hoặc email">
+                </div>
+                
+                <div class="input-wrapper">
+                    <label>Mật khẩu</label>
+                    <input type="password" id="reg-password" placeholder="Tạo mật khẩu (ít nhất 6 ký tự)">
+                </div>
+
+                <div class="input-wrapper">
+                    <label>Xác nhận mật khẩu</label>
+                    <input type="password" id="reg-confirm-password" placeholder="Nhập lại mật khẩu">
+                </div>
+
+                <button class="btn-primary" id="btn-register">Đăng ký tài khoản</button>
+
+                <div class="register-hint" style="margin-top: 25px;">
+                    Đã có tài khoản? <a href="#" id="show-login">Quay lại Đăng nhập</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

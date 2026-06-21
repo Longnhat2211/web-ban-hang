@@ -588,32 +588,76 @@ a{
     white-space: nowrap;
 }
 
-.search_box{
-    position: relative; 
-}
-
-.goi-y-list {
+.goi_y_list {
     position: absolute;
-    top: 100%;
+    top: 100%; /* Đẩy ngay dưới ô tìm kiếm */
     left: 0;
     width: 100%;
-    background: white;
+    background: #fff;
     border: 1px solid #ddd;
+    border-top: none;
     list-style: none;
-    z-index: 1000;
-    margin: 0;
-    padding: 0;
-    
+    z-index: 9999;
+    max-height: 400px;
+    overflow-y: auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.goi-y-list li {
-    padding: 10px;
+/* Container chứa danh sách gợi ý */
+#danh-sach-goi-y {
+    position: absolute;
+    top: 100%; 
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    list-style: none;
+    z-index: 9999;
+    max-height: 350px;
+    overflow-y: auto;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    margin-top: 5px;
+    padding: 5px 0;
+}
+
+/* Từng dòng sản phẩm */
+#danh-sach-goi-y li {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
     cursor: pointer;
-    border-bottom: 1px solid #eee;
+    transition: background 0.2s;
+    border-bottom: 1px solid #f5f5f5;
 }
 
-.goi-y-list li:hover {
-    background-color: #f0f0f0;
+#danh-sach-goi-y li:last-child { border-bottom: none; }
+
+/* Hiệu ứng khi di chuột vào */
+#danh-sach-goi-y li:hover {
+    background-color: #f8f9fa;
 }
 
+/* Hình ảnh sản phẩm trong gợi ý */
+#danh-sach-goi-y li img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-right: 15px;
+}
 
+/* Chữ trong gợi ý */
+.goi-y-info strong {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.goi-y-info span {
+    font-size: 13px;
+    color: #d0021c; /* Màu đỏ cho giá */
+    font-weight: bold;
+}
+
+body { overflow-x: hidden; }
